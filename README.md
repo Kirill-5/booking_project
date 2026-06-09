@@ -6,12 +6,12 @@
 
 ## Быстрый старт
 
-Запустите PostgreSQL через Docker:
+Запустите PostgreSQL через Docker: ::
 
 docker run --name postgres_booking -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
 docker exec -it postgres_booking psql -U postgres -c "CREATE DATABASE booking_db"
 
-Затем запустите приложение:
+Затем запустите приложение: ::
 
 docker-compose up --build
 
@@ -46,7 +46,7 @@ API будет доступно по адресу: http://localhost:8000/docs
 
 ## Запуск тестов
 
-Важно: Тесты не очищают базу автоматически. Перед запуском нужно очистить таблицу bookings.
+Важно: Тесты не очищают базу автоматически. Перед запуском нужно очистить таблицу bookings. ::
 
 docker exec -it postgres_booking psql -U postgres -d booking_db -c "DELETE FROM bookings;"
 poetry run pytest test_main.py -v
@@ -55,7 +55,7 @@ poetry run pytest test_main.py -v
 
 ---
 
-## Остановка
+## Остановка ::
 
 docker-compose down
 docker start postgres_booking
@@ -64,18 +64,18 @@ docker start postgres_booking
 
 ## Структура проекта
 
-booking_project/
-├── main.py
-├── database.py
-├── models.py
-├── schemas.py
-├── config.py
-├── test_main.py
-├── Dockerfile
-├── docker-compose.yml
-├── pyproject.toml
-├── poetry.lock
-└── README.md
+  booking_project/
+    ├── main.py              - FastAPI приложение, эндпоинты, бизнес-логика
+    ├── database.py          - подключение к PostgreSQL, сессии, базовый класс
+    ├── models.py            - SQLAlchemy модели (User, Room, Slot, Booking)
+    ├── schemas.py           - Pydantic схемы для валидации входа/выхода
+    ├── config.py            - настройки из .env (подключение к БД)
+    ├── test_main.py         - тесты (pytest)
+    ├── Dockerfile           - инструкция для сборки образа
+    ├── docker-compose.yml   - запуск app + postgres
+    ├── pyproject.toml       - зависимости проекта (poetry)
+    ├── poetry.lock          - фиксация версий зависимостей
+    └── README.md            - документация
 
 ---
 
