@@ -1,0 +1,17 @@
+[project]
+name = "booking-project"
+version = "0.1.0"
+description = "Meeting room booking service"
+authors = [
+    {name = "KirillS"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "psycopg2 (>=2.9.12,<3.0.0)",
+    "httpx (>=0.28.1,<0.29.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
