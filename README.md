@@ -6,18 +6,18 @@
 
 ## Быстрый старт
 
-Запустите PostgreSQL через Docker:  ​```
-
+Запустить PostgreSQL через Docker:  
+​
+```bash
 docker run --name postgres_booking -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
 docker exec -it postgres_booking psql -U postgres -c "CREATE DATABASE booking_db"
+```
 
-​```
+Затем запустить приложение: ​
 
-Затем запустите приложение: ​```
-
+```bash
 docker-compose up --build
-
-​```
+```
 
 API будет доступно по адресу: http://localhost:8000/docs
 
@@ -50,36 +50,39 @@ API будет доступно по адресу: http://localhost:8000/docs
 
 ## Запуск тестов
 
-Важно: Тесты не очищают базу автоматически. Перед запуском нужно очистить таблицу bookings. ​```
-
-docker exec -it postgres_booking psql -U postgres -d booking_db -c "DELETE FROM bookings;"
-poetry run pytest test_main.py -v ​```
+⚠️Важно: Тесты не очищают базу автоматически. Перед запуском нужно очистить таблицу bookings. 
 ​
-Если имя контейнера изменилось, посмотрите его через docker ps и подставьте в команду.
-
----
+```bash
+docker exec -it postgres_booking psql -U postgres -d booking_db -c "DELETE FROM bookings;"
+poetry run pytest test_main.py -v 
+```
+​---
 
 ## Остановка 
-​```
+
+```bash
 docker-compose down
 docker start postgres_booking
-​```
+```
+
 ---
 
 ## Структура проекта
 
+```
 booking_project/
-├── main.py # FastAPI приложение, эндпоинты, бизнес-логика
-├── database.py # Подключение к PostgreSQL, сессии, базовый класс
-├── models.py # SQLAlchemy модели (User, Room, Slot, Booking)
-├── schemas.py # Pydantic схемы для валидации входа/выхода
-├── config.py # Настройки из .env (подключение к БД)
-├── test_main.py # Тесты (pytest)
-├── Dockerfile # Инструкция для сборки образа
-├── docker-compose.yml # Запуск app + postgres
-├── pyproject.toml # Зависимости проекта (poetry)
-├── poetry.lock # Фиксация версий зависимостей
-└── README.md # Документация
+├── main.py              # FastAPI приложениие, эндпоинты, бизнес-логика
+├── database.py          # Подключение к PostgreSQL, сессии, базовый класс
+├── models.py            # SQLalchemy модели (User, Room, Slot, Booking)
+├── schemas.py           # Pydantic схемы для валидации входа/ выхода
+├── config.py            # Настройки из .env (подключение к бд)
+├── test_main.py         # Тесты (pytest)
+├── Dockerfile           # Инструкция для сборки контейнера
+├── docker-compose.yml   # Запуск приложения и postgres
+├── pyproject.toml       # Зависимости проекта в poetry)
+├── poetry.lock          # Фиксация версий зависимостей
+└── README.md            # Документация
+```
 
 ---
 
@@ -91,3 +94,4 @@ booking_project/
 - JWT (AuthX)
 - Docker / Docker Compose
 - Pytest
+
