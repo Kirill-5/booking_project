@@ -2,7 +2,7 @@ from database import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 
 
-# Модель пользователя
+# Таблица пользователя
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
@@ -11,14 +11,14 @@ class User(Base):
     role = Column(String) # admin / employee
 
 
-# Модель переговорной комнаты
+# Таблица переговорной комнаты
 class Room(Base):
     __tablename__ = "rooms"
     id = Column(Integer, primary_key=True)
     name = Column(String)
 
 
-# Модель временного слота
+# Таблица временного слота
 class Slot(Base):
     __tablename__ = "slots"
     id = Column(Integer, primary_key=True)
@@ -27,7 +27,7 @@ class Slot(Base):
     room_id = Column(Integer, ForeignKey("rooms.id"))
 
 
-# Модель бронирования
+# Таблица бронирования
 class Booking(Base):
     __tablename__ = "bookings"
     id = Column(Integer, primary_key=True)
