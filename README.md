@@ -94,7 +94,7 @@ test_main.py::test_create_booking_conflict PASSED      [100%]
 booking_project/
 ├── main.py              # FastAPI приложениие, эндпоинты, бизнес-логика
 ├── database.py          # Подключение к PostgreSQL, сессии, базовый класс
-├── models.py            # SQLalchemy модели (User, Room, Slot, Booking)
+├── models.py            # SQLalchemy таблицы (User, Room, Slot, Booking)
 ├── schemas.py           # Pydantic схемы для валидации входа/ выхода
 ├── config.py            # Настройки из .env (подключение к бд)
 ├── test_main.py         # Тесты (pytest)
