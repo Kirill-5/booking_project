@@ -50,29 +50,21 @@ API будет доступно по адресу: http://localhost:8000/docs
 
 # Запуск тестов
 
-⚠️ **Важно:** Тесты не очищают базу автоматически. Каждый тест нужно запускать отдельно, очищая БД перед каждым.
+⚠️ **Важно:** Тесты не очищают базу автоматически.
 
-## 1. Тесты логина (очистка не требуется)
+### 1. Очистить БД и запустить все тесты, кроме конфликта
 
 
-```bash
-poetry run pytest test_main.py::test_login_success -v
-poetry run pytest test_main.py::test_login_fail -v
-```
-
-2. Тесты бронирования (очищать БД перед каждым)
-
-# Очистить БД
 ```bash
 docker exec -it postgres_booking psql -U postgres -d booking_db -c "DELETE FROM bookings;"
-```
-
-# Тест успешного создания
-```bash
+poetry run pytest test_main.py::test_login_success -v
+poetry run pytest test_main.py::test_login_fail -v
 poetry run pytest test_main.py::test_create_booking_success -v
 ```
 
-# Снова очистить БД
+### 2. Снова очистить БД и запустить тест конфликта
+
+# Очистить БД
 ```bash
 docker exec -it postgres_booking psql -U postgres -d booking_db -c "DELETE FROM bookings;"
 ```
